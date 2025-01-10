@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import { Upload, Table, Image } from "lucide-react";
+import { Upload, Image } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -73,6 +73,12 @@ const CSVMediaViewer: React.FC = () => {
     setError("");
     setIsProcessing(true);
 
+    if (!file) {
+      setError("No file selected");
+      setIsProcessing(false);
+      return;
+    }
+    //@ts-ignore
     Papa.parse(file, {
       complete: (results: ParsedCSVData) => {
         if (results.data && results.data.length > 0) {
