@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Papa from "papaparse";
+import MediaViewer from "./media-viewer";
 
 interface ValidationErrors {
   file?: string;
@@ -260,15 +261,20 @@ const CSVMediaViewer: React.FC = () => {
               {/* Media Preview */}
               <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
                 {selectedRow[urlColumn] ? (
-                  <img
-                    src={String(selectedRow[urlColumn])}
-                    alt="Media preview"
-                    className="max-w-full max-h-full object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/api/placeholder/400/320";
-                    }}
-                  />
+                  // <video                    
+                  //   poster={String(selectedRow[urlColumn])}
+                  //   className="max-w-full max-h-full object-contain"
+                  //   onError={(e) => {
+                  //     const target = e.target as HTMLImageElement;
+                  //     target.src = "/no-image.svg";
+                  //   }}
+                  // >
+                  //   <source src={String(selectedRow[urlColumn])} onError={(e) => {
+                  //     const target = e.target as HTMLImageElement;
+                  //     target.src = "/no-image.svg";
+                  //   }}/>
+                  // </video>
+                  <MediaViewer mediaUrl={String(selectedRow[urlColumn])} />
                 ) : (
                   <Image className="w-12 h-12 text-gray-400" />
                 )}
