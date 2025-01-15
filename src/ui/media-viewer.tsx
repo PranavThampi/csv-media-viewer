@@ -32,14 +32,14 @@ const MediaViewer: React.FC<{ mediaUrl: string }> = ({ mediaUrl }) => {
     getMediaType();
   }, [mediaUrl]);
 
-  //   if (error) {
-  //     return (
-  //       <div className="object-contain">
-  //         <img src="no-image.svg" alt="Error loading media" />
-  //         <p>{error}</p>
-  //       </div>
-  //     );
-  //   }
+    if (error) {
+      return (
+        <div className="object-contain">
+          <img src="no-image.svg" alt="Error loading media" />
+          <p>{error}</p>
+        </div>
+      );
+    }
 
   if (!mediaType) {
     return <div>Loading...</div>;
