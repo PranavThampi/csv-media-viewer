@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 const fetchMediaType = async (url: string): Promise<"image" | "video"> => {
-  const response = await fetch(url, { method: "GET"});
+  const response = await fetch(url, { method: "GET", headers: { "Access-Control-Allow-Origin": "*" } });
   const contentType = response.headers.get("content-type");
   if (contentType?.startsWith("image")) {
     return "image";
